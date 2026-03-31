@@ -1,0 +1,53 @@
+Test 1 (constructor): Pass.
+Current state: OrderedSet { size=0, height=0, elements=[ ] }
+Test 2 (insert and contains): Pass.
+Current state: OrderedSet { size=3, height=2, elements=[ 10 15 20 ] }
+Test 3 (contains)Pass.
+Current state: OrderedSet { size=3, height=2, elements=[ 1 2 3 ] }
+Test 4 (operator[]): Pass.
+Current state: OrderedSet { size=1, height=1, elements=[ 42 ] }
+Test 5 (remove and operator-=)Pass.
+Current state: OrderedSet { size=1, height=1, elements=[ 20 ] }
+Test 6 (update and operator*=): Pass.
+Current state: OrderedSet { size=3, height=2, elements=[ 15 25 30 ] }
+Test 7 (operator! clear): Pass.
+Current state: OrderedSet { size=0, height=0, elements=[ ] }
+Test 8 (operator== and operator!=): Pass.
+Current state (a): OrderedSet { size=3, height=2, elements=[ 5 10 15 ] }
+Current state (b): OrderedSet { size=4, height=3, elements=[ 5 10 15 20 ] }
+Test 9 (subset/superset operators): Pass.
+Current state (a): OrderedSet { size=3, height=2, elements=[ 7 8 9 ] }
+Current state (b): OrderedSet { size=3, height=2, elements=[ 7 8 9 ] }
+Test 10 (copy constructor): Pass.
+Current state (original): OrderedSet { size=3, height=2, elements=[ 10 20 30 ] }
+Current state (copy): OrderedSet { size=4, height=3, elements=[ 10 20 30 40 ] }
+Test 11 (copy assignment): Pass.
+Current state (original): OrderedSet { size=3, height=2, elements=[ 5 6 7 ] }
+Current state (assigned): OrderedSet { size=4, height=3, elements=[ 5 6 7 100 ] }
+Test 12 (self-assignment): Pass.
+Current state: OrderedSet { size=3, height=2, elements=[ 1 2 3 ] }
+Test 13 (move constructor): Pass.
+Current state (original): OrderedSet { size=0, height=0, elements=[ ] }
+Current state (moved): OrderedSet { size=3, height=2, elements=[ 1 2 3 ] }
+Test 14 (AVL height): Pass.
+Current state: OrderedSet { size=15, height=4, elements=[ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ] }
+Test 15 (toString): Pass.
+Current state: OrderedSet { size=3, height=2, elements=[ 1 2 3 ] }
+Test 16 (DuplicateValueException on insert): 
+  Exception: Duplicate value: '7' already exists in the set.
+Test 16 continued: Pass.
+Current state: OrderedSet { size=1, height=1, elements=[ 7 ] }
+Test 17 (DuplicateValueException on update): 
+  Exception: Duplicate value: '2' already exists in the set.
+Test 17 continued: Pass.
+Current state: OrderedSet { size=2, height=2, elements=[ 1 2 ] }
+Test 18 (out_of_range on remove): 
+  Exception: remove(): value 999 not found in set
+Test 18 continued: Pass.
+Current state: OrderedSet { size=1, height=1, elements=[ 5 ] }
+Test 19 (out_of_range on update): 
+  Exception: update(): value 999 not found in set.
+Test 19 continued: Pass.
+Current state: OrderedSet { size=1, height=1, elements=[ 5 ] }
+Test 20 (out_of_range on operator-=): Pass.
+Current state: OrderedSet { size=0, height=0, elements=[ ] }
