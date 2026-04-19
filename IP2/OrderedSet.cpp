@@ -8,6 +8,9 @@
 
 using namespace std;
 namespace orderedset{
+    DuplicateValueException::DuplicateValueException(const string& value)
+        : logic_error("Duplicate value: " + value + " already exists in the set."){}
+
     struct Node{
         int value;
         Node *left;
@@ -234,7 +237,7 @@ class OrderedSet::Impl{
         return *this;
     }
     bool OrderedSet::contains(int value) const{
-        return Impl::searchNode(pImpl->root, value);
+        return !Impl::searchNode(pImpl->root, value);
     }
     int OrderedSet::operator[](int value) const{
         if (contains(value)){
@@ -249,16 +252,29 @@ class OrderedSet::Impl{
         return pImpl->nodeCount == 0;
     }
     string OrderedSet::toString() const {
-        if (!pImpl) return "OrderedSet { moved/empty }";
-        vector<int> elements;
-        Impl::inorder(pImpl->root, elements);
-        ostringstream oss;
-        oss << "OrderedSet { size=" << pImpl->nodeCount << ", height=" << height()<< ", elements=[ ";
-        for (int v : elements){
-            oss << v << " ";
+        if (!pImpl || !pImpl->root) {
+            return "OrderedSet { size=0, height=0, elements=[ ] }";
         }
-        oss << "] }";
-        return oss.str();
+
+        vector<int> elements = getElements(); 
+        stringstream ss;
+        
+        ss << "OrderedSet { size=" << pImpl->nodeCount  << ", height=" << height() << ", elements=[ ";
+
+        if (elements.size() <= 10) {
+            for (int v : elements) {
+                ss << v << " ";
+            }
+        } else {
+            for (size_t i = 0; i < 5; ++i) ss << elements[i] << " ";
+            ss << "... ";
+            for (size_t i = elements.size() - 5; i < elements.size(); ++i) {
+                ss << elements[i] << " ";
+            }
+        }
+        
+        ss << "] }";
+        return ss.str();
     }
     void OrderedSet::update(int oldValue, int newValue) {
         if (!contains(oldValue)){
@@ -269,6 +285,12 @@ class OrderedSet::Impl{
         }
         remove(oldValue);
         insert(newValue);
+    }
+    vector <int> OrderedSet::getElements() const{
+        vector <int> elements;
+        Impl::inorder(pImpl->root, elements);
+        return elements;
+
     }
     OrderedSet &OrderedSet::operator*=(const pair<int,int>& p) {
         update(p.first, p.second);
