@@ -30,15 +30,15 @@ Test 13 (move constructor): Pass.
 Current state (original): OrderedSet { size=0, height=0, elements=[ ] }
 Current state (moved): OrderedSet { size=3, height=2, elements=[ 1 2 3 ] }
 Test 14 (AVL height): Pass.
-Current state: OrderedSet { size=15, height=4, elements=[ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ] }
+Current state: OrderedSet { size=15, height=4, elements=[ 1 2 3 4 5 ... 11 12 13 14 15 ] }
 Test 15 (toString): Pass.
 Current state: OrderedSet { size=3, height=2, elements=[ 1 2 3 ] }
 Test 16 (DuplicateValueException on insert): 
-  Exception: Duplicate value: '7' already exists in the set.
+  Exception: Duplicate value: 7already exists in the set.
 Test 16 continued: Pass.
 Current state: OrderedSet { size=1, height=1, elements=[ 7 ] }
 Test 17 (DuplicateValueException on update): 
-  Exception: Duplicate value: '2' already exists in the set.
+  Exception: Duplicate value: 2already exists in the set.
 Test 17 continued: Pass.
 Current state: OrderedSet { size=2, height=2, elements=[ 1 2 ] }
 Test 18 (out_of_range on remove): 
