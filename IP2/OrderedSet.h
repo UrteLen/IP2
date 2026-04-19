@@ -4,17 +4,21 @@
 #include <string>
 #include <stdexcept>
 #include <utility>
+#include <vector>
 
 namespace orderedset {
 
         //An exception thrown when attempting to insert an existing value
     class DuplicateValueException : public std::logic_error {
     public:
-        explicit DuplicateValueException(const std::string& value) 
-            : std::logic_error("Duplicate value: '" + value + "' already exists in the set.") {}
+        explicit DuplicateValueException(const std::string& value); 
     };
         //Implementation of the ADT "Set" using an AVL tree and the Pimpl idiom
     class OrderedSet {
+        private:
+            class Impl;
+            Impl* pImpl;
+
         public:
     
             OrderedSet();                                   //Default constructor
@@ -31,6 +35,8 @@ namespace orderedset {
             int size() const;                               //Returns number of elements
             bool empty() const;                             //Checks if set is empty
 
+            std::vector <int> getElements() const;           
+
             OrderedSet& operator-=(int value);                          //Removal operator
             OrderedSet& operator+=(int value);                          //Insertion operator
             OrderedSet& operator*=(const std::pair<int, int>& values);  //Update operator
@@ -46,10 +52,6 @@ namespace orderedset {
             bool operator>=(const OrderedSet& other) const; 
 
             std::string toString() const;
-
-        private:
-            class Impl;
-            Impl* pImpl;
     };
 
 } 
